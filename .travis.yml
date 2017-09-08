@@ -4,8 +4,14 @@ language:
   - generic
 cache:
   - apt
-install:
-  - ./install-dependencies.sh
-  - ./install-osg.sh
-  - ./install-fcl.sh
-  - ./install-openrave.sh
+
+jobs:
+  include:
+    - stage: Dependencies
+    - script: ./install-dependencies.sh
+    - stage: OpenSceneGraph
+    - script: ./install-osg.sh
+    - stage: FCL
+    - script: ./install-fcl.sh
+    - stage: OpenRAVE
+    - script: ./install-openrave.sh
