@@ -1,0 +1,11 @@
+sudo: true
+dist: trusty
+language:
+  - generic
+cache:
+  - apt
+install:
+  - ./install-dependencies.sh
+  - ./install-osg.sh
+  - ./install-fcl.sh
+  - ./install-openrave.sh
