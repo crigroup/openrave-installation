@@ -4,7 +4,7 @@ Bash scripts to install OpenRAVE from source
 
 ## Travis - Continuous Integration
 
-[![Build Status](https://travis-ci.org/fsuarez6/openrave-installation.svg?branch=master)](https://travis-ci.org/fsuarez6/openrave-installation)
+[![Build Status](https://travis-ci.org/crigroup/openrave-installation.svg?branch=master)](https://travis-ci.org/crigroup/openrave-installation)
 
 ## Installation
 Run the scripts in the following order:
