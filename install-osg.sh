@@ -12,8 +12,9 @@ echo "Installing OpenSceneGraph 3.4 from source..."
 echo ""
 mkdir -p ~/git
 cd ~/git
-git clone https://github.com/openscenegraph/OpenSceneGraph.git
-cd OpenSceneGraph; git reset --hard OpenSceneGraph-3.4
+git clone https://github.com/openscenegraph/OpenSceneGraph.git      \
+--branch OpenSceneGraph-3.4
+cd OpenSceneGraph
 mkdir build; cd build
 if [ $(lsb_release -sr) = '14.04' ]; then
   cmake ..
