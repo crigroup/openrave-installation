@@ -1,0 +1,16 @@
+sudo: true
+dist: trusty
+language:
+  - generic
+cache:
+  - apt
+
+jobs:
+  include:
+    - stage: OpenSceneGraph
+    - script: ./install-dependencies.sh
+    - script: ./install-osg.sh
+    - stage: OpenRAVE
+    - script: ./install-dependencies.sh
+    - script: ./install-fcl.sh
+    - script: ./install-openrave.sh
