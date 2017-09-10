@@ -8,9 +8,6 @@ cache:
 jobs:
   include:
     - stage: OpenSceneGraph
-    - script: ./install-dependencies.sh
-    - script: ./install-osg.sh
+    - script: ./install-dependencies.sh; ./install-osg.sh
     - stage: OpenRAVE
-    - script: ./install-dependencies.sh
-    - script: ./install-fcl.sh
-    - script: ./install-openrave.sh
+    - script: ./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh
