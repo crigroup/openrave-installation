@@ -32,11 +32,11 @@ fi
 # Libraries
 sudo apt-get install -y --no-install-recommends ann-tools libann-dev          \
 libassimp-dev libavcodec-dev libavformat-dev libboost-python-dev              \
-libboost-all-dev libbullet-dev libeigen3-dev libfaac-dev libflann-dev         \
-libfreetype6-dev liblapack-dev libglew-dev libgsm1-dev libmpfi-dev            \
-libmpfr-dev liboctave-dev libode-dev libogg-dev libpcre3-dev libqhull-dev     \
-libsoqt-dev-common libsoqt4-dev libswscale-dev libtinyxml-dev libvorbis-dev   \
-libx264-dev libxml2-dev libxvidcore-dev
+libboost-all-dev libeigen3-dev libfaac-dev libflann-dev libfreetype6-dev      \
+liblapack-dev libglew-dev libgsm1-dev libmpfi-dev  libmpfr-dev liboctave-dev  \
+libode-dev libogg-dev libpcre3-dev libqhull-dev  libsoqt-dev-common           \
+libsoqt4-dev libswscale-dev libtinyxml-dev libvorbis-dev  libx264-dev         \
+libxml2-dev libxvidcore-dev
 if [ $(lsb_release -sr) = '14.04' ]; then
   sudo apt-get install -y --no-install-recommends collada-dom-dev libccd      \
   libpcrecpp0 liblog4cxx10-dev libqt4-dev
