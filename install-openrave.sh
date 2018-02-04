@@ -17,7 +17,7 @@ COMMIT=9350ebc
 echo ""
 echo "Installing OpenRAVE 0.9 from source (Commit $COMMIT)..."
 echo ""
-cd ~/git
+mkdir -p ~/git; cd ~/git
 git clone https://github.com/rdiankov/openrave.git
 cd openrave; git reset --hard $COMMIT
 mkdir build; cd build

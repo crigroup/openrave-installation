@@ -10,7 +10,7 @@
 echo ""
 echo "Installing FCL 0.5.0 from source..."
 echo ""
-cd ~/git
+mkdir -p ~/git; cd ~/git
 git clone https://github.com/flexible-collision-library/fcl
 cd fcl; git reset --hard 0.5.0
 mkdir build; cd build
