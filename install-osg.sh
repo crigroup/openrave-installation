@@ -19,7 +19,7 @@ if [ $(lsb_release -sr) = '14.04' ]; then
 elif [ $(lsb_release -sr) = '16.04' ]; then
   cmake .. -DDESIRED_QT_VERSION=4
 elif [ $(lsb_release -sr) = '18.04' ]; then
-  cmake -DDESIRED_QT_VERSION=4 ..
+  cmake .. -DDESIRED_QT_VERSION=4 
 fi
 make -j `nproc`
 sudo make install

@@ -21,6 +21,6 @@ mkdir -p ~/git; cd ~/git
 git clone https://github.com/rdiankov/openrave.git
 cd openrave; git reset --hard $COMMIT
 mkdir build; cd build
-cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/  -DCMAKE_CXX_STANDARD=11 ..
+cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ -DCMAKE_CXX_STANDARD=11 ..
 make -j `nproc`
 sudo make install

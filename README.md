@@ -15,3 +15,6 @@ Run the scripts in the following order:
 ./install-fcl.sh
 ./install-openrave.sh
 ```
+
+## Need to run!
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib64
