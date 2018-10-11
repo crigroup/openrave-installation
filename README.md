@@ -1,6 +1,11 @@
 # openrave-installation
 
-Bash scripts to install OpenRAVE from source
+Bash scripts to install OpenRAVE from source. 
+
+Supported distros:
+* Ubuntu 14.04
+* Ubuntu 16.04
+* Ubuntu 18.04
 
 ## Travis - Continuous Integration
 
