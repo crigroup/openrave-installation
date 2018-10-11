@@ -15,3 +15,11 @@ Run the scripts in the following order:
 ./install-fcl.sh
 ./install-openrave.sh
 ```
+
+## Post-installation 
+If you have a segfault, place this line in .bashrc or .zshrc and try
+again.
+
+```bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib64
+```
