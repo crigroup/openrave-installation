@@ -21,6 +21,13 @@ mkdir -p ~/git; cd ~/git
 git clone https://github.com/rdiankov/openrave.git
 cd openrave; git reset --hard $COMMIT
 mkdir build; cd build
-cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ ..
+if [ $(lsb_release -sr) = '14.04' ]; then
+  cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ ..
+elif [ $(lsb_release -sr) = '16.04' ]; then
+  cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ ..
+# to compile on ubuntu 18.04, C11 is needed.
+elif [ $(lsb_release -sr) = '18.04' ]; then  
+  cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ -DCMAKE_CXX_STANDARD=11 ..
+fi
 make -j `nproc`
 sudo make install
