@@ -16,5 +16,10 @@ Run the scripts in the following order:
 ./install-openrave.sh
 ```
 
-## Need to run!
+## Post-installation 
+If you have a segfault, place this line in .bashrc or .zshrc and try
+again.
+
+```bash
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib64
+```
