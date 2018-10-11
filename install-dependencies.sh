@@ -28,25 +28,19 @@ if [ $(lsb_release -sr) = '14.04' ]; then
   sudo apt-get install -y --no-install-recommends qt4-dev-tools zlib-bin
 elif [ $(lsb_release -sr) = '16.04' ]; then
   sudo apt-get install -y --no-install-recommends qt5-default minizip
-elif [ $(lsb_release -sr) = '18.04' ]; then
-  sudo apt-get install -y --no-install-recommends qt5-default minizip
 fi
 # Libraries
 sudo apt-get install -y --no-install-recommends ann-tools libann-dev          \
 libassimp-dev libavcodec-dev libavformat-dev libboost-python-dev              \
-libeigen3-dev libfaac-dev libflann-dev libfreetype6-dev      \
+libboost-all-dev libeigen3-dev libfaac-dev libflann-dev libfreetype6-dev      \
 liblapack-dev libglew-dev libgsm1-dev libmpfi-dev  libmpfr-dev liboctave-dev  \
 libode-dev libogg-dev libpcre3-dev libqhull-dev  libsoqt-dev-common           \
 libsoqt4-dev libswscale-dev libtinyxml-dev libvorbis-dev  libx264-dev         \
 libxml2-dev libxvidcore-dev
 if [ $(lsb_release -sr) = '14.04' ]; then
   sudo apt-get install -y --no-install-recommends collada-dom-dev libccd      \
-  libpcrecpp0 liblog4cxx10-dev libqt4-dev libboost-all-dev 
+  libpcrecpp0 liblog4cxx10-dev libqt4-dev
 elif [ $(lsb_release -sr) = '16.04' ]; then
   sudo apt-get install -y --no-install-recommends libccd-dev                  \
-  libcollada-dom2.4-dp-dev liblog4cxx-dev libminizip-dev octomap-tools libboost-all-dev 
-elif [ $(lsb_release -sr) = '18.04' ]; then
-  sudo apt-get install -y --no-install-recommends libccd-dev                  \
-  libcollada-dom2.4-dp-dev liblog4cxx-dev libminizip-dev octomap-tools  \
-  libboost1.62-all-dev 
+  libcollada-dom2.4-dp-dev liblog4cxx-dev libminizip-dev octomap-tools
 fi
