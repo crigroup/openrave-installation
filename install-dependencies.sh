@@ -23,7 +23,7 @@ sudo apt-get update
 # Programs
 sudo apt-get install -y --no-install-recommends build-essential cmake doxygen \
 g++ git ipython octave python-dev python-h5py python-numpy python-pip         \
-python-scipy
+python-scipy python-setuptools python-wheel
 if [ $(lsb_release -sr) = '14.04' ]; then
   sudo apt-get install -y --no-install-recommends qt4-dev-tools zlib-bin
 elif [ $(lsb_release -sr) = '16.04' ]; then
