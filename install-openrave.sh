@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Authors:
-#   Francisco Suarez-Ruiz <fsuarez6.github.io>
+#   Francisco Suarez <fsuarez6.github.io>
 #
 # Description:
 #   OpenRAVE Installation Script
@@ -11,7 +11,7 @@ UBUNTU_VER=$(lsb_release -sr)
 if [ ${UBUNTU_VER} != '14.04' ] && [ ${UBUNTU_VER} != '16.04' ] && [ ${UBUNTU_VER} != '18.04' ]; then
     echo "ERROR: Unsupported Ubuntu version: ${UBUNTU_VER}"
     echo "  Supported versions are: 14.04, 16.04 and 18.04"
-    # exit 1
+    exit 1
 fi
 
 # Sympy version 0.7.1
@@ -31,9 +31,9 @@ cd openrave; git reset --hard ${RAVE_COMMIT}
 mkdir build; cd build
 if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ]; then
   cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ ..
-# to compile on ubuntu 18.04, C11 is needed.
 elif [ ${UBUNTU_VER} = '18.04' ]; then
-  cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ -DCMAKE_CXX_STANDARD=11 ..
+  cmake -DODE_USE_MULTITHREAD=ON -DCMAKE_CXX_STANDARD=11            \
+        -DBoost_NO_SYSTEM_PATHS=TRUE -DBOOST_ROOT=/usr/local/ ..
 fi
 make -j `nproc`
 sudo make install

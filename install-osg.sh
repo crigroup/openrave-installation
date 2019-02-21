@@ -1,17 +1,17 @@
 #!/bin/bash
 #
 # Authors:
-#   Francisco Suarez-Ruiz <fsuarez6.github.io>
+#   Francisco Suarez <fsuarez6.github.io>
 #
 # Description:
 #   OpenRAVE Installation Script: OpenSceneGraph
 
 # Check ubuntu version
 UBUNTU_VER=$(lsb_release -sr)
-if [ ${UBUNTU_VER} != '14.04' ] && [ ${UBUNTU_VER} != '16.04' ] && [ ${UBUNTU_VER} != '18.04' ]; then
+if [ ${UBUNTU_VER} != '14.04' ] && [ ${UBUNTU_VER} != '16.04' ]; then
     echo "ERROR: Unsupported Ubuntu version: ${UBUNTU_VER}"
     echo "  Supported versions are: 14.04, 16.04 and 18.04"
-    # exit 1
+    exit 1
 fi
 
 # OpenSceneGraph
@@ -28,7 +28,8 @@ mkdir build; cd build
 if [ ${UBUNTU_VER} = '14.04' ]; then
   cmake ..
 elif [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER} = '18.04' ]; then
-  cmake .. -DDESIRED_QT_VERSION=4
+  cmake -DDESIRED_QT_VERSION=4 ..
 fi
 make -j `nproc`
 sudo make install
+sudo make install_ld_conf
