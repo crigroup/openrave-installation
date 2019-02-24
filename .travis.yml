@@ -32,4 +32,4 @@ install:
   - ${SH} "apt-get install -y --no-install-recommends lsb-release sudo"
 
 script:
-  - ${SH} ${COMMAND}
+  - ${SH} "${COMMAND}"
