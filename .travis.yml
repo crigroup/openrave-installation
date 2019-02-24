@@ -1,13 +1,36 @@
 sudo: true
-dist: trusty
+
+dist: xenial
+
 language:
   - generic
+
 cache:
   - apt
+
+services:
+  - docker
+
+matrix:
+  include:
+    - env: UVERSION=14.04
+    - env: UVERSION=16.04
+    - env: UVERSION=18.04
+
+env:
+  - CONTAINER_NAME="ubuntu-cnt"
+  - SH="docker exec -t ${CONTAINER_NAME} /bin/bash -c"
+
+before_install:
+  - QUIET=$(docker rm -f ${CONTAINER_NAME} 2>&1 /dev/null)
+  - docker run -d --name ${CONTAINER_NAME} -v $(pwd):/travis -w /travis ubuntu:${UVERSION} tail -f /dev/null
+
+install:
+  - ${SH} "rm -rf /var/lib/apt/lists/*"
 
 jobs:
   include:
     - stage: OpenSceneGraph
-    - script: ./install-dependencies.sh; ./install-osg.sh
+    - script: ${SH} "./install-dependencies.sh; ./install-osg.sh"
     - stage: OpenRAVE
-    - script: ./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh
+    - script: ${SH} ./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh
