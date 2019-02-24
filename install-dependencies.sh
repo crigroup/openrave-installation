@@ -63,8 +63,8 @@ elif [ ${UBUNTU_VER} = '18.04' ]; then
     tar -xzf ${BOOST_SRC_DIR}.tar.gz
     cd ${BOOST_SRC_DIR}
     ./bootstrap.sh --exec-prefix=/usr/local
-    ./b2 -j `nproc`
-    sudo ./b2 -j `nproc` install
+    ./b2 -j $(nproc)
+    sudo ./b2 -j $(nproc) install
 fi
 
 # updatedb for debugging purposes

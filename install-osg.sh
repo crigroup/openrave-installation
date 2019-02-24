@@ -31,6 +31,6 @@ if [ ${UBUNTU_VER} = '14.04' ]; then
 elif [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER} = '18.04' ]; then
   cmake -DDESIRED_QT_VERSION=4 ..
 fi
-make -j `nproc`
+make -j $(nproc)
 sudo make install
 sudo make install_ld_conf
