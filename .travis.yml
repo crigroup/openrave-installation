@@ -16,20 +16,18 @@ env:
     - CONTAINER_NAME="ubuntu-cnt"
     - SH="docker exec -t ${CONTAINER_NAME} /bin/bash -c"
   matrix:
-    - UVERSION=14.04
-    - UVERSION=16.04
-    - UVERSION=18.04
+    - INFO="OpenSceneGraph-14.04" UVERSION=14.04 COMMAND="./install-dependencies.sh; ./install-osg.sh"
+    - INFO="OpenRAVE-14.04" UVERSION=14.04 COMMAND="./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh"
+    - INFO="OpenSceneGraph-16.04" UVERSION=16.04 COMMAND="./install-dependencies.sh; ./install-osg.sh"
+    - INFO="OpenRAVE-16.04" UVERSION=16.04 COMMAND="./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh"
+    - INFO="OpenSceneGraph-18.04" UVERSION=18.04 COMMAND="./install-dependencies.sh; ./install-osg.sh"
+    - INFO="OpenRAVE-18.04" UVERSION=18.04 COMMAND="./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh"
 
 before_install:
-  - QUIET=$(docker rm -f ${CONTAINER_NAME} 2>&1 /dev/null)
   - docker run -d --name ${CONTAINER_NAME} -v $(pwd):/travis -w /travis ubuntu:${UVERSION} tail -f /dev/null
 
 install:
   - ${SH} "rm -rf /var/lib/apt/lists/*"
 
-jobs:
-  include:
-    - stage: OpenSceneGraph
-    - script: ${SH} "./install-dependencies.sh; ./install-osg.sh"
-    - stage: OpenRAVE
-    - script: ${SH} ./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh
+script:
+  - ${SH} ${COMMAND}
