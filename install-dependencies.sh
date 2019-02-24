@@ -27,7 +27,7 @@ if [ ${UBUNTU_VER} = '14.04' ]; then
   # Additional PPAs
   sudo apt-add-repository -y ppa:imnmfotmal/libccd
 fi
-sudo apt-get update
+sudo apt-get update -qq
 # Programs
 sudo apt-get install -qq -y --no-install-recommends build-essential cmake doxygen       \
 g++ git ipython locate lsb-release octave python-dev python-h5py python-numpy           \
