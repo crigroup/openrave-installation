@@ -11,15 +11,14 @@ cache:
 services:
   - docker
 
-matrix:
-  include:
-    - env: UVERSION=14.04
-    - env: UVERSION=16.04
-    - env: UVERSION=18.04
-
 env:
-  - CONTAINER_NAME="ubuntu-cnt"
-  - SH="docker exec -t ${CONTAINER_NAME} /bin/bash -c"
+  global:
+    - CONTAINER_NAME="ubuntu-cnt"
+    - SH="docker exec -t ${CONTAINER_NAME} /bin/bash -c"
+  matrix:
+    - UVERSION=14.04
+    - UVERSION=16.04
+    - UVERSION=18.04
 
 before_install:
   - QUIET=$(docker rm -f ${CONTAINER_NAME} 2>&1 /dev/null)
