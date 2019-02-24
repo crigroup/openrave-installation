@@ -26,14 +26,14 @@ echo ""
 echo "Installing OpenRAVE 0.9 from source (Commit ${RAVE_COMMIT})..."
 echo ""
 mkdir -p ~/git; cd ~/git
-wget https://github.com/rdiankov/openrave/archive/${RAVE_COMMIT}.zip -O openrave.zip
+wget -q https://github.com/rdiankov/openrave/archive/${RAVE_COMMIT}.zip -O openrave.zip
 unzip -q openrave.zip -d ~/git
 cd ~/git/openrave-${RAVE_COMMIT}
 mkdir build; cd build
 if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ]; then
-  cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ ..
+  cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ -Wno-deprecated -Wno-dev ..
 elif [ ${UBUNTU_VER} = '18.04' ]; then
-  cmake -DODE_USE_MULTITHREAD=ON -DCMAKE_CXX_STANDARD=11            \
+  cmake -DODE_USE_MULTITHREAD=ON -DCMAKE_CXX_STANDARD=11 -Wno-deprecated -Wno-dev           \
         -DBoost_NO_SYSTEM_PATHS=TRUE -DBOOST_ROOT=/usr/local/ ..
 fi
 make -s -j $(nproc)
