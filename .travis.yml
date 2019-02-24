@@ -16,12 +16,12 @@ env:
     - CONTAINER_NAME="ubuntu-cnt"
     - SH="docker exec -t ${CONTAINER_NAME} /bin/bash -c"
   matrix:
-    - INFO="OpenSceneGraph-14.04" UVERSION=14.04 COMMAND="./install-dependencies.sh; ./install-osg.sh"
-    - INFO="OpenSceneGraph-16.04" UVERSION=16.04 COMMAND="./install-dependencies.sh; ./install-osg.sh"
-    - INFO="OpenSceneGraph-18.04" UVERSION=18.04 COMMAND="./install-dependencies.sh; ./install-osg.sh"
-    - INFO="OpenRAVE-14.04" UVERSION=14.04 COMMAND="./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh"
-    - INFO="OpenRAVE-16.04" UVERSION=16.04 COMMAND="./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh"
-    - INFO="OpenRAVE-18.04" UVERSION=18.04 COMMAND="./install-dependencies.sh; ./install-fcl.sh; ./install-openrave.sh"
+    - INFO="OpenSceneGraph-14.04" UVERSION=14.04 COMMAND="./install-osg.sh"
+    - INFO="OpenSceneGraph-16.04" UVERSION=16.04 COMMAND="./install-osg.sh"
+    - INFO="OpenSceneGraph-18.04" UVERSION=18.04 COMMAND="./install-osg.sh"
+    - INFO="OpenRAVE-14.04" UVERSION=14.04 COMMAND="./install-fcl.sh; ./install-openrave.sh"
+    - INFO="OpenRAVE-16.04" UVERSION=16.04 COMMAND="./install-fcl.sh; ./install-openrave.sh"
+    - INFO="OpenRAVE-18.04" UVERSION=18.04 COMMAND="./install-fcl.sh; ./install-openrave.sh"
 
 before_install:
   - docker run -d --name ${CONTAINER_NAME} -v $(pwd):/travis -w /travis ubuntu:${UVERSION} tail -f /dev/null
@@ -32,4 +32,5 @@ install:
   - ${SH} "apt-get install -y --no-install-recommends lsb-release sudo"
 
 script:
+  - ${SH} "./install-dependencies.sh"
   - ${SH} "${COMMAND}"
