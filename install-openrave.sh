@@ -26,8 +26,9 @@ echo ""
 echo "Installing OpenRAVE 0.9 from source (Commit ${RAVE_COMMIT})..."
 echo ""
 mkdir -p ~/git; cd ~/git
-git clone https://github.com/rdiankov/openrave.git
-cd openrave; git reset --hard ${RAVE_COMMIT}
+wget https://github.com/rdiankov/openrave/archive/${RAVE_COMMIT}.zip -O openrave.zip
+unzip -q openrave.zip -d ~/git
+cd ~/git/openrave-${RAVE_COMMIT}
 mkdir build; cd build
 if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ]; then
   cmake -DODE_USE_MULTITHREAD=ON -DOSG_DIR=/usr/local/lib64/ ..

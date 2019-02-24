@@ -21,8 +21,9 @@ echo "Installing OpenSceneGraph 3.4 from source (Commit ${OSG_COMMIT})..."
 echo ""
 
 mkdir -p ~/git; cd ~/git
-git clone https://github.com/openscenegraph/OpenSceneGraph.git
-cd OpenSceneGraph; git reset --hard ${OSG_COMMIT}
+wget -q https://github.com/openscenegraph/OpenSceneGraph/archive/${OSG_COMMIT}.zip -O OpenSceneGraph.zip
+unzip -q OpenSceneGraph.zip -d ~/git
+cd ~/git/OpenSceneGraph-${OSG_COMMIT}
 mkdir build; cd build
 
 if [ ${UBUNTU_VER} = '14.04' ]; then

@@ -19,8 +19,9 @@ echo ""
 echo "Installing FCL 0.5.0 from source..."
 echo ""
 mkdir -p ~/git; cd ~/git
-git clone https://github.com/flexible-collision-library/fcl
-cd fcl; git reset --hard 0.5.0
+wget -q https://github.com/flexible-collision-library/fcl/archive/0.5.0.zip -O fcl.zip
+unzip -q fcl.zip -d ~/git
+cd ~/git/fcl-0.5.0
 mkdir build; cd build
 cmake ..
 make -j `nproc`

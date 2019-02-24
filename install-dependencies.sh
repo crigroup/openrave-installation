@@ -30,8 +30,8 @@ fi
 sudo apt-get update
 # Programs
 sudo apt-get install -y --no-install-recommends build-essential cmake doxygen   \
-g++ git ipython octave python-dev python-h5py python-numpy python-pip           \
-python-scipy python-setuptools python-wheel
+g++ git ipython locate lsb-release octave python-dev python-h5py python-numpy   \
+python-pip python-scipy python-setuptools python-wheel wget
 if [ ${UBUNTU_VER} = '14.04' ]; then
   sudo apt-get install -y --no-install-recommends qt4-dev-tools zlib-bin
 elif [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER} = '18.04' ]; then
