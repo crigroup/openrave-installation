@@ -24,5 +24,5 @@ unzip -q fcl.zip -d ~/git
 cd ~/git/fcl-0.5.0
 mkdir build; cd build
 cmake ..
-make -j $(nproc) > /dev/null
+make -j $(nproc)
 sudo make install

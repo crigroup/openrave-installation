@@ -33,4 +33,4 @@ install:
 
 script:
   - ${SH} "./install-dependencies.sh"
-  - ${SH} "${COMMAND}"
+  - travis_wait 30 ${SH} "${COMMAND}" > /dev/null

@@ -36,5 +36,5 @@ elif [ ${UBUNTU_VER} = '18.04' ]; then
   cmake -DODE_USE_MULTITHREAD=ON -DCMAKE_CXX_STANDARD=11 -Wno-deprecated -Wno-dev           \
         -DBoost_NO_SYSTEM_PATHS=TRUE -DBOOST_ROOT=/usr/local/ ..
 fi
-make -j $(nproc) > /dev/null
+make -j $(nproc)
 sudo make install
