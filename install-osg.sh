@@ -8,7 +8,7 @@
 
 # Check ubuntu version
 UBUNTU_VER=$(lsb_release -sr)
-if [ ${UBUNTU_VER} != '14.04' ] && [ ${UBUNTU_VER} != '16.04' ]; then
+if [ ${UBUNTU_VER} != '14.04' ] && [ ${UBUNTU_VER} != '16.04' ] && [ ${UBUNTU_VER} != '18.04' ]; then
     echo "ERROR: Unsupported Ubuntu version: ${UBUNTU_VER}"
     echo "  Supported versions are: 14.04, 16.04 and 18.04"
     exit 1
