@@ -34,8 +34,6 @@ install:
 
 script:
   - echo "Installing OpenRAVE dependencies..."
-  - travis_wait 10 ${SH} './install-dependencies.sh > dependencies.log'
-  - ${SH} 'tail -n 100 dependencies.log'
+  - travis_wait 10 ${SH} './install-dependencies.sh'
   - echo "Installing ${INFO}..."
-  - travis_wait 40 ${SH} '${COMMAND} > install.log'
-  - ${SH} 'tail -n 500 install.log'
+  - travis_wait 40 ${SH} '${COMMAND}'
