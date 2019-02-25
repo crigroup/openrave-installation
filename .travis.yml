@@ -27,7 +27,7 @@ before_install:
   - docker run -d --name ${CONTAINER_NAME} -v $(pwd):/travis -w /travis ubuntu:${UVERSION} tail -f /dev/null
 
 install:
-  - - echo "Installing container-specific tools..."
+  - echo "Installing container-specific tools..."
   - ${SH} "rm -rf /var/lib/apt/lists/*"
   - ${SH} "apt-get update -qq"
   - ${SH} "apt-get install -qq -y --no-install-recommends apt-utils lsb-release sudo"
