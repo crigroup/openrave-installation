@@ -33,12 +33,18 @@ install:
   - ${SH} "apt-get install -qq -y --no-install-recommends apt-utils lsb-release sudo"
 
 script:
-  - echo "Installing OpenRAVE dependencies..."
-  - travis_wait 20 ${SH} "./install-dependencies.sh > dependencies.log"
-  - ${SH} "tail -n 50 dependencies.log"
-  - echo "Installing ${INFO}..."
   - ${SH} "touch osg.log fcl.log rave.log"
-  - travis_wait 30 ${SH} "${COMMAND}"
-  - ${SH} "tail -n 100 osg.log"
-  - ${SH} "tail -n 100 fcl.log"
-  - ${SH} "tail -n 100 rave.log"
+  # Output something every minute or Travis kills the job
+  - while sleep 1m; do echo "=====[ Installing OpenRAVE dependencies... ]====="; done &
+  - ${SH} "./install-dependencies.sh > dependencies.log"
+  # Killing background sleep loop
+  - kill %1
+  - ${SH} "tail -n 50 dependencies.log"
+  # Output something every minute or Travis kills the job
+  - while sleep 1m; do echo "=====[ Installing ${INFO}... ]====="; done &
+  - ${SH} "${COMMAND}"
+  # Killing background sleep loop
+  - kill %1
+  - ${SH} "tail -n 50 osg.log"
+  - ${SH} "tail -n 50 fcl.log"
+  - ${SH} "tail -n 50 rave.log"
