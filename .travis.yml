@@ -24,7 +24,7 @@ env:
     - INFO="OpenRAVE-18.04" UVERSION=18.04 COMMAND="./install-fcl.sh > fcl.log ; ./install-openrave.sh > rave.log"
 
 before_install:
-  - docker run -d --name ${CONTAINER_NAME} -v $(pwd):/travis -w /travis ubuntu:${UVERSION} tail -f /dev/null
+  - docker run -d --name ${CONTAINER_NAME} --env DEBIAN_FRONTEND=noninteractive -v $(pwd):/travis -w /travis ubuntu:${UVERSION} tail -f /dev/null
 
 install:
   - echo "Installing container-specific tools..."
