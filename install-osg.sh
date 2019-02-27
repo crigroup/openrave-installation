@@ -26,10 +26,15 @@ unzip -q OpenSceneGraph.zip -d ~/git
 cd ~/git/OpenSceneGraph-${OSG_COMMIT}
 mkdir build; cd build
 
+BUILD_OSG_APPLICATIONS=ON
+if [ ${CI} ]; then
+    BUILD_OSG_APPLICATIONS=OFF
+fi
+
 if [ ${UBUNTU_VER} = '14.04' ]; then
-  cmake ..
+  cmake -DBUILD_OSG_APPLICATIONS=${BUILD_OSG_APPLICATIONS} ..
 elif [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER} = '18.04' ]; then
-  cmake -DDESIRED_QT_VERSION=4 ..
+  cmake -DBUILD_OSG_APPLICATIONS=${BUILD_OSG_APPLICATIONS} -DDESIRED_QT_VERSION=4 ..
 fi
 make -j $(nproc)
 sudo make install

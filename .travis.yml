@@ -16,12 +16,12 @@ env:
     - CONTAINER_NAME="ubuntu-cnt"
     - SH="docker exec -t ${CONTAINER_NAME} /bin/bash -c"
   matrix:
-    - INFO="OpenSceneGraph-14.04" UVERSION=14.04 COMMAND="./install-osg.sh > osg.log"
-    - INFO="OpenSceneGraph-16.04" UVERSION=16.04 COMMAND="./install-osg.sh > osg.log"
-    - INFO="OpenSceneGraph-18.04" UVERSION=18.04 COMMAND="./install-osg.sh > osg.log"
-    - INFO="OpenRAVE-14.04" UVERSION=14.04 COMMAND="./install-fcl.sh > fcl.log ; ./install-openrave.sh > rave.log"
-    - INFO="OpenRAVE-16.04" UVERSION=16.04 COMMAND="./install-fcl.sh > fcl.log ; ./install-openrave.sh > rave.log"
-    - INFO="OpenRAVE-18.04" UVERSION=18.04 COMMAND="./install-fcl.sh > fcl.log ; ./install-openrave.sh > rave.log"
+    - INFO="OpenSceneGraph-14.04" UVERSION=14.04 COMMAND="./install-osg.sh &> osg.log"
+    - INFO="OpenSceneGraph-16.04" UVERSION=16.04 COMMAND="./install-osg.sh &> osg.log"
+    - INFO="OpenSceneGraph-18.04" UVERSION=18.04 COMMAND="./install-osg.sh &> osg.log"
+    - INFO="OpenRAVE-14.04" UVERSION=14.04 COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
+    - INFO="OpenRAVE-16.04" UVERSION=16.04 COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
+    - INFO="OpenRAVE-18.04" UVERSION=18.04 COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
 
 before_install:
   - docker run -d --name ${CONTAINER_NAME} --env DEBIAN_FRONTEND=noninteractive -v $(pwd):/travis -w /travis ubuntu:${UVERSION} tail -f /dev/null
