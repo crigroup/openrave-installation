@@ -14,6 +14,22 @@ if [ ${UBUNTU_VER} != '14.04' ] && [ ${UBUNTU_VER} != '16.04' ] && [ ${UBUNTU_VE
     exit 1
 fi
 
+# Install boost
+if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ]; then
+    sudo apt-get install -q -y --no-install-recommends libboost-all-dev        \
+    libboost-python-dev
+elif [ ${UBUNTU_VER} = '18.04' ]; then
+    # Install boost 1.58 from source
+    BOOST_SRC_DIR=~/git/boost_1_58_0
+    mkdir -p ~/git; cd ~/git
+    wget https://vorboss.dl.sourceforge.net/project/boost/boost/1.58.0/boost_1_58_0.tar.gz -O ${BOOST_SRC_DIR}.tar.gz
+    tar -xzf ${BOOST_SRC_DIR}.tar.gz
+    cd ${BOOST_SRC_DIR}
+    ./bootstrap.sh --exec-prefix=/usr/local
+    ./b2 -j $(nproc)
+    sudo ./b2 -j $(nproc) install
+fi
+
 # Sympy version 0.7.1
 echo ""
 echo "Downgrading sympy to version 0.7.1..."
