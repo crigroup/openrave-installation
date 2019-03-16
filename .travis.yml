@@ -24,7 +24,7 @@ env:
     - INFO="OpenRAVE-18.04" UDISTRO=bionic COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
 
 before_install:
-  - docker run -d --name ${CONTAINER_NAME} --env DEBIAN_FRONTEND=noninteractive -v $(pwd):/travis -w /travis openrave-dependencies-${UDISTRO}:latest tail -f /dev/null
+  - docker run -d --name ${CONTAINER_NAME} --env DEBIAN_FRONTEND=noninteractive -v $(pwd):/travis -w /travis fsuarez6/openrave-dependencies-${UDISTRO}:latest tail -f /dev/null
 
 script:
   - ${SH} "touch osg.log fcl.log rave.log"
