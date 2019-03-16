@@ -20,8 +20,8 @@ echo "Installing OpenRAVE dependencies..."
 echo ""
 echo "Requires root privileges:"
 # Update
+sudo apt-get update -q
 if [ ${UBUNTU_VER} = '14.04' ]; then
-  sudo apt-get update -q
   sudo apt-get install -q -y --no-install-recommends software-properties-common
   # ROS Indigo repository
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -29,7 +29,6 @@ if [ ${UBUNTU_VER} = '14.04' ]; then
   # Additional PPAs
   sudo apt-add-repository -y ppa:imnmfotmal/libccd
 fi
-sudo apt-get update -q
 # Programs
 sudo apt-get install -q -y --no-install-recommends build-essential cmake doxygen        \
 g++ git ipython locate lsb-release octave python-dev python-h5py python-numpy           \
@@ -52,6 +51,22 @@ if [ ${UBUNTU_VER} = '14.04' ]; then
 elif [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER} = '18.04' ]; then
   sudo apt-get install -q -y --no-install-recommends libccd-dev                \
   libcollada-dom2.4-dp-dev liblog4cxx-dev libminizip-dev octomap-tools
+fi
+
+# Install boost
+if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ]; then
+    sudo apt-get install -q -y --no-install-recommends libboost-all-dev        \
+    libboost-python-dev
+elif [ ${UBUNTU_VER} = '18.04' ]; then
+    # Install boost 1.58 from source
+    BOOST_SRC_DIR=~/git/boost_1_58_0
+    mkdir -p ~/git; cd ~/git
+    wget https://vorboss.dl.sourceforge.net/project/boost/boost/1.58.0/boost_1_58_0.tar.gz -O ${BOOST_SRC_DIR}.tar.gz
+    tar -xzf ${BOOST_SRC_DIR}.tar.gz
+    cd ${BOOST_SRC_DIR}
+    ./bootstrap.sh --exec-prefix=/usr/local
+    ./b2 -j $(nproc)
+    sudo ./b2 -j $(nproc) install
 fi
 
 # updatedb for debugging purposes
