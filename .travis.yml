@@ -16,30 +16,18 @@ env:
     - CONTAINER_NAME="ubuntu-cnt"
     - SH="docker exec -t ${CONTAINER_NAME} /bin/bash -c"
   matrix:
-    - INFO="OpenSceneGraph-14.04" UVERSION=14.04 COMMAND="./install-osg.sh &> osg.log"
-    - INFO="OpenSceneGraph-16.04" UVERSION=16.04 COMMAND="./install-osg.sh &> osg.log"
-    - INFO="OpenSceneGraph-18.04" UVERSION=18.04 COMMAND="./install-osg.sh &> osg.log"
-    - INFO="OpenRAVE-14.04" UVERSION=14.04 COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
-    - INFO="OpenRAVE-16.04" UVERSION=16.04 COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
-    - INFO="OpenRAVE-18.04" UVERSION=18.04 COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
+    - INFO="OpenSceneGraph-14.04" UDISTRO=trusty COMMAND="./install-osg.sh &> osg.log"
+    - INFO="OpenSceneGraph-16.04" UDISTRO=xenial COMMAND="./install-osg.sh &> osg.log"
+    - INFO="OpenSceneGraph-18.04" UDISTRO=bionic COMMAND="./install-osg.sh &> osg.log"
+    - INFO="OpenRAVE-14.04" UDISTRO=trusty COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
+    - INFO="OpenRAVE-16.04" UDISTRO=xenial COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
+    - INFO="OpenRAVE-18.04" UDISTRO=bionic COMMAND="./install-fcl.sh &> fcl.log ; ./install-openrave.sh &> rave.log"
 
 before_install:
-  - docker run -d --name ${CONTAINER_NAME} --env DEBIAN_FRONTEND=noninteractive -v $(pwd):/travis -w /travis ubuntu:${UVERSION} tail -f /dev/null
-
-install:
-  - echo "Installing container-specific tools..."
-  - ${SH} "rm -rf /var/lib/apt/lists/*"
-  - ${SH} "apt-get update -qq"
-  - ${SH} "apt-get install -qq -y --no-install-recommends apt-utils lsb-release sudo"
+  - docker run -d --name ${CONTAINER_NAME} --env DEBIAN_FRONTEND=noninteractive -v $(pwd):/travis -w /travis openrave-dependencies-${UDISTRO}:latest tail -f /dev/null
 
 script:
   - ${SH} "touch osg.log fcl.log rave.log"
-  # Output something every minute or Travis kills the job
-  - while sleep 1m; do echo "=====[ Installing OpenRAVE dependencies... ]====="; done &
-  - ${SH} "./install-dependencies.sh > dependencies.log"
-  # Killing background sleep loop
-  - kill %1
-  - ${SH} "tail -n 50 dependencies.log"
   # Output something every minute or Travis kills the job
   - while sleep 1m; do echo "=====[ Installing ${INFO}... ]====="; done &
   - ${SH} "${COMMAND}"
