@@ -43,7 +43,7 @@ libassimp-dev libavcodec-dev libavformat-dev libeigen3-dev libfaac-dev          
 libflann-dev libfreetype6-dev liblapack-dev libglew-dev libgsm1-dev             \
 libmpfi-dev  libmpfr-dev liboctave-dev libode-dev libogg-dev libpcre3-dev       \
 libqhull-dev libsoqt-dev-common libsoqt4-dev libswscale-dev libtinyxml-dev      \
-libvorbis-dev libx264-dev libxml2-dev libxvidcore-dev
+libvorbis-dev libx264-dev libxml2-dev libxvidcore-dev libbz2-dev
 if [ ${UBUNTU_VER} = '14.04' ]; then
   sudo apt-get install -y --no-install-recommends collada-dom-dev libccd      \
   libpcrecpp0 liblog4cxx10-dev libqt4-dev
@@ -64,7 +64,7 @@ elif [ ${UBUNTU_VER} = '18.04' ]; then
     cd ${BOOST_SRC_DIR}
     ./bootstrap.sh --exec-prefix=/usr/local
     ./b2 -j `nproc`
-    sudo ./b2 -j `nproc` install
+    sudo ./b2 -j `nproc` install threading=multi
 fi
 
 # updatedb for debugging purposes
