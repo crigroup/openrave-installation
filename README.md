@@ -6,6 +6,7 @@ Supported distros:
 * Ubuntu 14.04
 * Ubuntu 16.04
 * Ubuntu 18.04
+* Ubuntu 20.04
 
 ## Travis - Continuous Integration
 
