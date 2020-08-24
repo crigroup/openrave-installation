@@ -38,7 +38,7 @@ if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER}
   sudo apt-get install -y --no-install-recommends ipython python-h5py python-numpy \
     python-pip python-wheel python-scipy
 elif [ ${UBUNTU_VER} = '20.04' ]; then
-  sudo apt-get install -y --no-install-recommends python2 
+  sudo apt-get install -y --no-install-recommends python2 curl
   curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
   python2 get-pip.py
   pip install ipython h5py numpy scipy wheel 
@@ -89,7 +89,7 @@ if [ ${UBUNTU_VER} = '20.04' ]; then
   mkdir -p ~/git 
   cd ~/git && git clone https://github.com/Tencent/rapidjson.git
   cd rapidjson && mkdir build && cd build
-  cmake .. && make -j `nproc` && make install
+  cmake .. && make -j `nproc` && sudo make install
 
   # Install Pybind
   cd ~/git && git clone https://github.com/pybind/pybind11.git 
@@ -99,7 +99,7 @@ if [ ${UBUNTU_VER} = '20.04' ]; then
     && git cherry-pick 94824d68a037d99253b92a5b260bb04907c42355 \
     && git cherry-pick 98c9f77e5481af4cbc7eb092e1866151461e3508 \
     && cmake .. -DPYBIND11_TEST=OFF -DPythonLibsNew_FIND_VERSION=2 \
-    && make install
+    && sudo make install
 fi
 
 # updatedb for debugging purposes
