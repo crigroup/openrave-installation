@@ -57,7 +57,7 @@ libmpfi-dev  libmpfr-dev liboctave-dev libode-dev libogg-dev libpcre3-dev       
 libqhull-dev libswscale-dev libtinyxml-dev libvorbis-dev libx264-dev            \
 libxml2-dev libxvidcore-dev libbz2-dev
 if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER} = '18.04' ]; then
-  sudo apt-get install -y -no-install-recommends libsoqt-dev-common libsoqt4-dev
+  sudo apt-get install -y --no-install-recommends libsoqt-dev-common libsoqt4-dev
 elif [ ${UBUNTU_VER} = '20.04' ]; then
   sudo apt-get install -y --no-install-recommends libsoqt520-dev
 fi
