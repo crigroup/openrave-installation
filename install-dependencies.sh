@@ -70,26 +70,27 @@ elif [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER} = '18.04' ] || [ ${UBUNTU_VE
 fi
 
 # Install boost
-if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER} = '20.04' ]; then
-    sudo apt-get install -y --no-install-recommends libboost-all-dev libboost-python-dev
-elif [ ${UBUNTU_VER} = '18.04' ]; then
-    # Install boost 1.58 from source
-    BOOST_SRC_DIR=~/git/boost_1_58_0
-    mkdir -p ~/git; cd ~/git
-    wget http://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.gz -O ${BOOST_SRC_DIR}.tar.gz
-    tar -xzf ${BOOST_SRC_DIR}.tar.gz
-    cd ${BOOST_SRC_DIR}
-    ./bootstrap.sh --exec-prefix=/usr/local
-    ./b2 -j `nproc`
-    sudo ./b2 -j `nproc` install threading=multi
-fi
+sudo apt-get install -y --no-install-recommends libboost-all-dev libboost-python-dev
 
-if [ ${UBUNTU_VER} = '20.04' ]; then
+if [ ${UBUNTU_VER} = '18.04' ] || [ ${UBUNTU_VER} = '20.04' ]; then
+  # Install opengl
+  pip install pyopengl
+
   # Install RapidJSON
   mkdir -p ~/git 
   cd ~/git && git clone https://github.com/Tencent/rapidjson.git
   cd rapidjson && mkdir build && cd build
   cmake .. && make -j `nproc` && sudo make install
+
+  # Check or set Git credentials to allow git cherry-pick
+  git_username=$(git config --get user.name)
+  git_email=$(git config --get user.email)
+  if [[ ${git_username} ]] && [[ ${git_email} ]]; then
+    echo "Git username: ${git_username} | email: ${git_email}"
+  else
+    git config --global user.name "lorem" && git config --global user.email "lorem@ipsum.com"
+    echo "Random Git credentials set as: lorem (username) and lorem@ipsum.com (email)"
+  fi
 
   # Install Pybind
   cd ~/git && git clone https://github.com/pybind/pybind11.git 
