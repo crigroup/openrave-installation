@@ -40,8 +40,8 @@ if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER}
 elif [ ${UBUNTU_VER} = '20.04' ]; then
   sudo apt-get install -y --no-install-recommends python2 curl
   curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
-  python2 get-pip.py
-  pip install ipython h5py numpy scipy wheel 
+  sudo python2 get-pip.py
+  pip install ipython h5py numpy scipy wheel pyopengl
 fi
 if [ ${UBUNTU_VER} = '14.04' ]; then
   sudo apt-get install -y --no-install-recommends qt4-dev-tools zlib-bin
