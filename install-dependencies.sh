@@ -39,7 +39,7 @@ if [ ${UBUNTU_VER} = '14.04' ] || [ ${UBUNTU_VER} = '16.04' ] || [ ${UBUNTU_VER}
     python-pip python-wheel python-scipy
 elif [ ${UBUNTU_VER} = '20.04' ]; then
   sudo apt-get install -y --no-install-recommends python2 curl
-  curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+  curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
   python2 get-pip.py
   pip install ipython h5py numpy scipy wheel 
 fi
@@ -92,8 +92,11 @@ if [ ${UBUNTU_VER} = '20.04' ]; then
   cmake .. && make -j `nproc` && sudo make install
 
   # Install Pybind
-  cd ~/git && git clone https://github.com/pybind/pybind11.git 
-  cd pybind11 && mkdir build && cd build 
+  cd ~/git && git clone https://github.com/pybind/pybind11.git
+  cd pybind11 
+  git config --local user.name crigroup
+  git config --local user.email crigroup@example.com
+  mkdir build && cd build 
   git remote add woody https://github.com/woodychow/pybind11.git \
     && git fetch woody && git checkout v2.2.4 \
     && git cherry-pick 94824d68a037d99253b92a5b260bb04907c42355 \
